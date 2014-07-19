@@ -135,15 +135,33 @@ def findSubtitles(part):
   paths = [ os.path.dirname(part_filename) ]
 
   # Check for local subtitles subdirectory
-  sub_dir_list = ["sub", "subs", "subtitle", "subtitles"]
+  sub_dirs_default = ["sub", "subs", "subtitle", "subtitles"]
   sub_dir_base = paths[0]
 
-  # not only use the subtitle sub-folders we know, but also search for capitalized versions of them
-  for sub_dir in sub_dir_list + [s.capitalize() for s in sub_dir_list]:
-    sub_dir_path = os.path.join(sub_dir_base, sub_dir)
+  sub_dir_list = []
+  if Prefs["scanAll"]:
+    # not only use the subtitle sub-folders we know, but also search for capitalized versions of them
+    for sub_dir in sub_dir_list + [s.capitalize() for s in sub_dir_list]:
+      sub_dir_list.append(os.path.join(sub_dir_base, sub_dir))
 
-    if os.path.isdir(sub_dir_path):
-      paths.append(sub_dir_path)
+  else:
+    if Prefs["subFolder"] != "current folder":
+      # got selected subfolder
+      sub_dir_list.append(os.path.join(sub_dir_base, Prefs["subFolder"]))
+
+  sub_dir_custom = Prefs["subFolderCustom"].strip()
+  if sub_dir_custom:
+    # got custom subfolder
+    if sub_dir_custom.startswith("/"):
+      # absolute folder
+      sub_dir_list.append(sub_dir_custom)
+    else:
+      # relative folder
+      sub_dir_list.append(os.path.join(sub_dir_base, sub_dir_custom))
+
+  for sub_dir in sub_dir_list:
+    if os.path.isdir(sub_dir):
+      paths.append(sub_dir)
 
   # Check for a global subtitle location
   global_subtitle_folder = os.path.join(Core.app_support_path, 'Subtitles')
