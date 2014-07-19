@@ -141,7 +141,7 @@ def findSubtitles(part):
   sub_dir_list = []
   if Prefs["scanAll"]:
     # not only use the subtitle sub-folders we know, but also search for capitalized versions of them
-    for sub_dir in sub_dir_list + [s.capitalize() for s in sub_dir_list]:
+    for sub_dir in sub_dirs_default + [s.capitalize() for s in sub_dirs_default]:
       sub_dir_list.append(os.path.join(sub_dir_base, sub_dir))
 
   else:
@@ -167,6 +167,8 @@ def findSubtitles(part):
   global_subtitle_folder = os.path.join(Core.app_support_path, 'Subtitles')
   if os.path.exists(global_subtitle_folder):
     paths.append(global_subtitle_folder)
+
+  
 
   # We start by building a dictionary of files to their absolute paths. We also need to know
   # the number of media files that are actually present, in case the found local media asset 
