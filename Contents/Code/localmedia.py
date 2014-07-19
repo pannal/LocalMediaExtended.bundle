@@ -138,6 +138,7 @@ def findSubtitles(part):
   sub_dir_list = ["sub", "subs", "subtitle", "subtitles"]
   sub_dir_base = paths[0]
 
+  # not only use the subtitle sub-folders we know, but also search for capitalized versions of them
   for sub_dir in sub_dir_list + [s.capitalize() for s in sub_dir_list]:
     sub_dir_path = os.path.join(sub_dir_base, sub_dir)
 
