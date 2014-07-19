@@ -17,7 +17,7 @@ PERSONAL_MEDIA_IDENTIFIER = "com.plexapp.agents.none"
 #####################################################################################################################
 
 class localMediaMovie(Agent.Movies):
-  name = 'Local Media Assets (Movies)'
+  name = 'Local Media Assets Extended (Movies)'
   languages = [Locale.Language.NoLanguage]
   primary_provider = False
   persist_stored_files = False
@@ -66,7 +66,7 @@ def FindUniqueSubdirs(dirs):
   return final_dirs
 
 class localMediaTV(Agent.TV_Shows):
-  name = 'Local Media Assets (TV)'
+  name = 'Local Media Assets Extended (TV)'
   languages = [Locale.Language.NoLanguage]
   primary_provider = False
   persist_stored_files = False
@@ -134,7 +134,7 @@ class localMediaTV(Agent.TV_Shows):
 #####################################################################################################################
 
 class localMediaArtist(Agent.Artist):
-  name = 'Local Media Assets (Artists)'
+  name = 'Local Media Assets Extended (Artists)'
   languages = [Locale.Language.NoLanguage]
   primary_provider = False
   persist_stored_files = False
@@ -151,7 +151,7 @@ class localMediaArtist(Agent.Artist):
 #####################################################################################################################
 
 class localMediaAlbum(Agent.Album):
-  name = 'Local Media Assets (Albums)'
+  name = 'Local Media Assets Extended (Albums)'
   languages = [Locale.Language.NoLanguage]
   primary_provider = False
   persist_stored_files = False

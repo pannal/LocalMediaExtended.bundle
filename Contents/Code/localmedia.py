@@ -134,6 +134,16 @@ def findSubtitles(part):
   part_basename = os.path.splitext(os.path.basename(part_filename))[0]
   paths = [ os.path.dirname(part_filename) ]
 
+  # Check for local subtitles subdirectory
+  sub_dir_list = ["sub", "subs", "subtitle", "subtitles"]
+  sub_dir_base = paths[0]
+
+  for sub_dir in sub_dir_list + [s.capitalize() for s in sub_dir_list]:
+    sub_dir_path = os.path.join(sub_dir_base, sub_dir)
+
+    if os.path.isdir(sub_dir_path):
+      paths.append(sub_dir_path)
+
   # Check for a global subtitle location
   global_subtitle_folder = os.path.join(Core.app_support_path, 'Subtitles')
   if os.path.exists(global_subtitle_folder):
