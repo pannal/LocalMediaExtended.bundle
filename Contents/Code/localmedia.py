@@ -149,7 +149,7 @@ def findSubtitles(part):
       # got selected subfolder
       sub_dir_list.append(os.path.join(sub_dir_base, Prefs["subFolder"]))
 
-  sub_dir_custom = Prefs["subFolderCustom"].strip() if Prefs["subFolderCustom"] else None
+  sub_dir_custom = Prefs["subFolderCustom"].strip() if bool(Prefs["subFolderCustom"]) else None
   if sub_dir_custom:
     # got custom subfolder
     if sub_dir_custom.startswith("/"):
