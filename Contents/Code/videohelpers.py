@@ -1,6 +1,7 @@
 import os
 import helpers
 
+from mutagen import File
 from mutagen.mp4 import MP4
 
 class VideoHelper(object):
@@ -32,9 +33,13 @@ class MP4VideoHelper(VideoHelper):
       item = episode
 
     Log('Reading MP4 tags')
-    try: tags = MP4(self.filename)
-    except: 
+    try: tags = File(self.filename, options=[MP4])
+    except Exception, e:
       Log('An error occurred while attempting to parse the MP4 file: ' + self.filename)
+      Log(str(e))
+      return
+    if tags == None:
+      Log('Not reading tags from %s because it doesn\'t look like an MP4 file.' % self.filename)
       return
 
     # Coverart
